@@ -3,15 +3,15 @@ var _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-Annotator.Plugin.HeatmapSidebar = (function(_super) {
-	__extends(HeatmapSidebar, _super);
+Annotator.Plugin.Grouping = (function(_super) {
+	__extends(Grouping, _super);
 	
 	//If you do not have options, delete next line and the parameters in the declaration function
-    HeatmapSidebar.prototype.options = null;
+    Grouping.prototype.options = null;
 	
     //declaration function, remember to set up submit and/or update as necessary, if you don't have
     //options, delete the options line below.
-	function HeatmapSidebar(element,options) {
+	function Grouping(element,options) {
         this.pluginInit = __bind(this.pluginInit, this);
 		this.reloadAnnotations = __bind(this.reloadAnnotations, this);
         this.groupAndColor = __bind(this.groupAndColor, this);
@@ -19,24 +19,24 @@ Annotator.Plugin.HeatmapSidebar = (function(_super) {
 		this.getPos = __bind(this.getPos,this);
         this.groupingButtonPressed = __bind(this.groupingButtonPressed, this);
         this.options = options;
-		_ref = HeatmapSidebar.__super__.constructor.apply(this, arguments);
+		_ref = Grouping.__super__.constructor.apply(this, arguments);
 		return _ref;
 	}
 	
     //example variables to be used to receive input in the annotator view
-	HeatmapSidebar.prototype.unfilteredAnnotations = null;
-    HeatmapSidebar.prototype.groupedAnnotations = null;
-    HeatmapSidebar.prototype.groupthreshold = 2;
-    HeatmapSidebar.prototype.useGrouping = 1;
+	Grouping.prototype.unfilteredAnnotations = null;
+    Grouping.prototype.groupedAnnotations = null;
+    Grouping.prototype.groupthreshold = 2;
+    Grouping.prototype.useGrouping = 1;
 
-    HeatmapSidebar.prototype.getPos = function(el) {
+    Grouping.prototype.getPos = function(el) {
         var off = $(el).offset();
         return {x: off.left,y: off.top-$($('.annotator-wrapper')[0]).offset().top};
     }
     
     //this function will initialize the plug in. Create your fields here in the editor and viewer.
-    HeatmapSidebar.prototype.pluginInit = function() {
-		console.log("HeatmapSidebar-pluginInit");
+    Grouping.prototype.pluginInit = function() {
+		console.log("Grouping-pluginInit");
 		//Check that annotator is working
 		if (!Annotator.supported()) {
             console.log("Annotator is not supported");
@@ -55,7 +55,7 @@ Annotator.Plugin.HeatmapSidebar = (function(_super) {
         $(newdiv).click(function(evt){self.groupingButtonPressed();});
 	};
     
-    HeatmapSidebar.prototype.clearGrouping = function(){
+    Grouping.prototype.clearGrouping = function(){
         console.log("Clearing Groups");
         $('.groupButton').remove();
         $.each(this.unfilteredAnnotations,function(val){
@@ -67,7 +67,7 @@ Annotator.Plugin.HeatmapSidebar = (function(_super) {
         });
     }
     
-    HeatmapSidebar.prototype.groupAndColor = function(){
+    Grouping.prototype.groupAndColor = function(){
         console.log("Grouping Annotations");
         annotations = this.unfilteredAnnotations;
         lineAnnDict = {};
@@ -104,7 +104,7 @@ Annotator.Plugin.HeatmapSidebar = (function(_super) {
         });
     }
         
-    HeatmapSidebar.prototype.reloadAnnotations = function(){
+    Grouping.prototype.reloadAnnotations = function(){
         console.log("Reloading Annotations");
         var annotations = this.annotator.plugins['Store'].annotations;
         //clear the sidebuttons
@@ -155,7 +155,7 @@ Annotator.Plugin.HeatmapSidebar = (function(_super) {
         return;
     };
     
-    HeatmapSidebar.prototype.groupingButtonPressed = function(){
+    Grouping.prototype.groupingButtonPressed = function(){
         if(this.useGrouping == 1){
             this.clearGrouping();
             this.annotator.unsubscribe('annotationsLoaded', this.reloadAnnotations);
@@ -180,6 +180,6 @@ Annotator.Plugin.HeatmapSidebar = (function(_super) {
         }
     }
     
-    return HeatmapSidebar;
+    return Grouping;
 
 })(Annotator.Plugin);

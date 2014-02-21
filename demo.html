@@ -29,7 +29,16 @@
     	var optionsgroup = {
     		threshold: 3
 		};
-    	$('#airlock').annotator().annotator('addPlugin','Grouping', optionsgroup);
+    	$('#airlock').annotator().annotator('addPlugin','Grouping', optionsgroup).annotator('addPlugin', 'Store', {
+        prefix: 'http://danielcebrian.com/annotations/api',
+        
+    annotationData: {uri:"https://github.com/lduarte1991"},
+
+        loadFromSearch:{
+          limit:10000000,
+          uri: "https://github.com/lduarte1991",
+        }
+      });
     </script>
   </body>
 
