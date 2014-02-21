@@ -49,7 +49,7 @@ Annotator.Plugin.Grouping = (function(_super) {
         var newdiv = document.createElement('div');
         var className = 'onOffGroupButton';
         newdiv.setAttribute('class',className);
-        newdiv.innerHTML = "Turn Grouping: OFF";
+        newdiv.innerHTML = "Annotation Grouping: OFF";
         $('.annotator-wrapper')[0].appendChild(newdiv);
         var self = this;
         $(newdiv).click(function(evt){self.groupingButtonPressed();});
@@ -163,7 +163,7 @@ Annotator.Plugin.Grouping = (function(_super) {
             this.annotator.unsubscribe('annotationDeleted', this.reloadAnnotations);
             this.annotator.unsubscribe('annotationCreated', this.reloadAnnotations);
             this.useGrouping = 0;
-            $(".onOffGroupButton").html("Turn Grouping: ON");
+            $(".onOffGroupButton").html("Annotation Grouping: ON");
             this.annotator.plugins.Store.annotations.forEach(function(annot){
 				$.each(annot.highlights,function(key,ann){
 				$(ann).css("background-color","");
@@ -176,7 +176,7 @@ Annotator.Plugin.Grouping = (function(_super) {
             this.annotator.subscribe('annotationDeleted', this.reloadAnnotations);
             this.annotator.subscribe('annotationCreated', this.reloadAnnotations);
             this.useGrouping = 1;
-            $(".onOffGroupButton").html("Turn Grouping: OFF");
+            $(".onOffGroupButton").html("Annotation Grouping: OFF");
         }
     }
     
